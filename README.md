@@ -6,9 +6,11 @@ rlImgui provides a backend for [Dear ImGui](https://github.com/ocornut/imgui) us
 
 # Building
 
+rlImGui can be used as a static library build using premake or CMake, or by directly including the files into your game project.
+
 ## premake
 
-rlImGui is setup to use premake to generate a static library and examples for Visual Studio 2019. Premake can also be used to generate makefiles for linux. rlImGui can be used as a static library, or by direclty including the files into your game project.
+rlImGui is setup to use premake to generate a static library and examples for Visual Studio 2019. Premake can also be used to generate makefiles for linux.
 
 If you wish to use premake, you will need to download the Premake5 executable for your platform from. https://premake.github.io/download
 
@@ -23,8 +25,6 @@ cmake --build build
 ```
 
 to configure and then build the examples.
-
-
 
 # Setup
 
@@ -63,7 +63,7 @@ This is a more complex example of ImGui, showing how to use raylib 2d and 3d cam
 This file has a converter to change Raylib colors into ImGui Colors
 
 ## Icon Fonts
-The extras folder has files to help add icon fonts into ImGui. Functions to load the font and #defines for the font glyps are included in each header.
+The extras folder has files to help add icon fonts into ImGui. Functions to load the font and #defines for the font glyphs are included in each header.
 
 ### Font Awesome
 This is a header in the extras folder to add icons from Font Awesome into ImGui.

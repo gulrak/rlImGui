@@ -3,6 +3,8 @@ workspace "rlImGui"
 	platforms { "x64"}
 	defaultplatform "x64"
 	cppdialect "C++11"
+	disablewarnings { "deprecated-declarations" }
+	defines{"PLATFORM_DESKTOP", "GRAPHICS_API_OPENGL_33"}
 
 	filter "configurations:Debug"
 		defines { "DEBUG" }
@@ -36,10 +38,6 @@ project "raylib"
 		
 	filter "action:vs*"
 		defines{"_WINSOCK_DEPRECATED_NO_WARNINGS", "_CRT_SECURE_NO_WARNINGS", "_WIN32"}
-		links {"winmm"}
-				
-	filter "action:gmake*"
-		links {"pthread", "GL", "m", "dl", "rt", "X11"}
 		
 	filter{}
 		
@@ -54,11 +52,10 @@ project "raylib"
 		["Header Files"] = { "raylib/src/**.h"},
 		["Source Files/*"] = {"raylib/src/**.c"},
 	}
-	files {"raylib/src/*.h", "raylib/src/*.c"}
+	files {"raylib/src/*.h", "raylib/src/*.c"}	
 	filter { "files:raylib/src/rglfw.c" }
 		compileas "Objective-C"
 	
-	defines{"PLATFORM_DESKTOP", "GRAPHICS_API_OPENGL_33"}
 		
 project "rlImGui"
 	kind "StaticLib"
@@ -105,8 +102,11 @@ project "simple"
 		defines{"_WINSOCK_DEPRECATED_NO_WARNINGS", "_CRT_SECURE_NO_WARNINGS", "_WIN32"}
 		links {"winmm"}
 		
-	filter "action:gmake*"
+	filter "system:linux"
 		links {"pthread", "GL", "m", "dl", "rt", "X11"}
+
+    filter "system:macosx"
+		links {"OpenGL.framework", "Cocoa.framework", "IOKit.framework", "CoreFoundation.framework", "CoreAudio.framework", "CoreVideo.framework"}
 		
 	filter{}
 		
@@ -130,8 +130,12 @@ project "editor"
 	filter "action:vs*"
 		defines{"_WINSOCK_DEPRECATED_NO_WARNINGS", "_CRT_SECURE_NO_WARNINGS", "_WIN32"}
 		links {"winmm"}
-	filter "action:gmake*"
+	        
+    filter "system:linux"
 		links {"pthread", "GL", "m", "dl", "rt", "X11"}
-		
+
+    filter "system:macosx"
+		links {"Cocoa.framework", "IOKit.framework", "OpenGL.framework", "CoreFoundation.framework"}
+
 	filter{}
 	
