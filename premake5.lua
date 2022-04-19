@@ -2,7 +2,8 @@ workspace "rlImGui"
 	configurations { "Debug","Debug.DLL", "Release", "Release.DLL" }
 	platforms { "x64"}
 	defaultplatform "x64"
-	
+	cppdialect "C++11"
+
 	filter "configurations:Debug"
 		defines { "DEBUG" }
 		symbols "On"
@@ -54,6 +55,8 @@ project "raylib"
 		["Source Files/*"] = {"raylib/src/**.c"},
 	}
 	files {"raylib/src/*.h", "raylib/src/*.c"}
+	filter { "files:raylib/src/rglfw.c" }
+		compileas "Objective-C"
 	
 	defines{"PLATFORM_DESKTOP", "GRAPHICS_API_OPENGL_33"}
 		
